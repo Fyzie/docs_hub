@@ -159,7 +159,7 @@ sudo apt install cmake
 pip install rfdetr supervision
 ```
 
-#### OpenCV (system-level clean install)
+#### OpenCV
 
 ```bash
 sudo apt-get update
@@ -174,6 +174,7 @@ pip install opencv-python
 ```bash
 pip install "numpy<2"
 ```
+may see some red, but should be fine to proceed
 
 ---
 
