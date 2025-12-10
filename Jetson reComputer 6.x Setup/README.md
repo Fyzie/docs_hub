@@ -1,6 +1,6 @@
 # Jetson reComputer 6.x Setup Guide
 
-This guide describes how to flash, configure, and prepare a Jetson reComputer (Jetpack 6.x) for development with CUDA, PyTorch, Pylon, and common utilities.
+This guide describes how to flash, configure, and prepare a Jetson reComputer Industrial Orin Nano 8GB (Jetpack 6.x) for development with CUDA, PyTorch, Pylon, and common utilities.
 
 ---
 
