@@ -12,10 +12,10 @@ This guide describes how to flash, configure, and prepare a Jetson reComputer In
 * Power connector (2-Pin terminal block)
 
 ---
+## **On Ubuntu,**
 
-## 1. Flash Jetpack 6.x Using NVIDIA SDK Manager
+### 1. Flash Jetpack 6.x Using NVIDIA SDK Manager
 
-### **On Ubuntu,**
 
 1. Download **NVIDIA SDK Manager** (22.04+)
 2. Launch the SDK Manager.
@@ -32,10 +32,18 @@ This guide describes how to flash, configure, and prepare a Jetson reComputer In
 4. Release the recovery button.
 
 ---
+## **On Jetson,**
 
-## 2. Initial Setup on Jetson
+### 2. Install Browser
 
-### Update & Install JetPack SDK + CUDA
+```bash
+sudo apt install epiphany-browser
+sudo chown $USER:$USER $HOME/Downloads && chmod 755 $HOME/Downloads
+```
+
+---
+
+### 3. Update & Install JetPack SDK + CUDA
 
 ```bash
 sudo apt update
@@ -45,7 +53,7 @@ sudo apt-get install cuda
 
 ---
 
-## 3. Install Pip & Configure CUDA Paths
+### 4. Install Pip & Configure CUDA Paths
 
 ```bash
 sudo apt install python3-pip
@@ -69,7 +77,7 @@ source ~/.bashrc
 
 ---
 
-## 4. Install JTOP (Jetson Stats)
+### 5. Install JTOP (Jetson Stats)
 
 ```bash
 sudo python3.10 -m pip install -u jetson-stats
@@ -79,16 +87,7 @@ sudo reboot
 
 ---
 
-## 5. Install Browser
-
-```bash
-sudo apt install epiphany-browser
-sudo chown $USER:$USER $HOME/Downloads && chmod 755 $HOME/Downloads
-```
-
----
-
-## 6. Install Miniconda (AArch64)
+### 6. Install Miniconda (AArch64)
 
 ```bash
 mkdir -p ~/miniconda3
@@ -101,7 +100,7 @@ conda init --all
 
 ---
 
-## 7. Install Basler Pylon (AArch64)
+### 7. Install Basler Pylon (AArch64)
 
 **Pylon 25.07 ARM64 Debian Package**  
 Download here:
@@ -116,7 +115,7 @@ sudo apt-get install ./pylon_*.deb ./codemeter*.deb
 
 ---
 
-## 8. Create Conda Environment (Python 3.10)
+### 8. Create Conda Environment (Python 3.10)
 
 ```bash
 conda create --name pygpu python=3.10
@@ -125,27 +124,27 @@ conda activate pygpu
 
 ---
 
-## 9. Install Dependencies
+### 9. Install Dependencies
 
-### Pylon binding
+#### Pylon binding
 
 ```bash
 pip install pypylon
 ```
 
-### PyTorch for Jetpack 6.0 (cu12.6)
+#### PyTorch for Jetpack 6.0 (cu12.6)
 
 ```bash
 pip install torch torchvision torchaudio --index-url https://pypi.jetson-ai-lab.io/jp6/cu126/
 ```
 
-### Verify CUDA
+#### Verify CUDA
 
 ```bash
 python3 -c "import torch; print(f'PyTorch: {torch.__version__}'); print(f'CUDA Available: {torch.cuda.is_available()}'); print(f'CUDA Version: {torch.version.cuda}')"
 ```
 
-### UI & OS libraries
+#### UI & OS libraries
 
 ```bash
 pip install PySide6
@@ -153,13 +152,13 @@ sudo apt install libdouble-conversion3 libopenblas-dev libxcb-xinerama0 libxcb-x
 sudo apt install cmake
 ```
 
-### RFDETR + Supervision
+#### RFDETR + Supervision
 
 ```bash
 pip install rfdetr supervision
 ```
 
-### OpenCV (system-level clean install)
+#### OpenCV (system-level clean install)
 
 ```bash
 sudo apt-get update
@@ -169,7 +168,7 @@ pip uninstall opencv-python opencv-python-headless
 pip install opencv-python
 ```
 
-### Fix numpy version for Jetson compatibility
+#### Fix numpy version for Jetson compatibility
 
 ```bash
 pip install "numpy<2"
@@ -177,7 +176,7 @@ pip install "numpy<2"
 
 ---
 
-## 10. Install Visual Studio Code (ARM64)
+### 10. Install Visual Studio Code (ARM64)
 
 Download ARM64 `.deb`:
 [https://code.visualstudio.com/download](https://code.visualstudio.com/download)
