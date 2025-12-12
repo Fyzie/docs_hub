@@ -340,3 +340,112 @@ Then connect.
 Next time Jetson reboots or reconnects, it might change → NoMachine won’t connect.   
 
 To avoid this, should **set a static IP via NetworkManager**.   
+
+### 14. Internet Sharing on Static IP (PC to Jetson)
+
+### **Scenario: Ubuntu PC → Jetson via Ethernet, Internet on Wi-Fi**
+---
+
+#### Step 1: Assign static IPs
+
+You already did:
+
+* PC Ethernet: `192.168.0.105`
+* Jetson Ethernet: `192.168.0.103`
+
+Great — now make sure **subnet matches** `/24`:
+
+* PC Ethernet: `192.168.0.105/24`
+* Jetson Ethernet: `192.168.0.103/24`
+
+---
+
+#### Step 2: Enable IP forwarding on PC
+
+On your **Ubuntu PC**:
+
+```bash
+sudo sysctl -w net.ipv4.ip_forward=1
+```
+
+To make permanent:
+
+```bash
+sudo nano /etc/sysctl.conf
+```
+
+Add or uncomment:
+
+```
+net.ipv4.ip_forward=1
+```
+
+---
+
+#### Step 3: Setup NAT (Network Address Translation) on PC
+
+Assuming your **Wi-Fi interface** is `wlp2s0`:
+
+```bash
+sudo iptables -t nat -A POSTROUTING -o wlp2s0 -j MASQUERADE
+sudo iptables -A FORWARD -i wlp2s0 -o enP8p1s0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+sudo iptables -A FORWARD -i enP8p1s0 -o wlp2s0 -j ACCEPT
+```
+
+* `enP8p1s0` = PC Ethernet connected to Jetson
+* `wlp2s0` = PC Wi-Fi interface connected to internet
+
+---
+
+#### Step 4: Configure Jetson gateway & DNS
+
+On Jetson:
+
+```bash
+sudo ip route add default via 192.168.0.105
+```
+
+Set DNS (temporary):
+
+```bash
+echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf
+```
+
+* Now Jetson can reach the internet via PC.
+
+---
+
+#### Step 5: Test
+
+```bash
+ping 8.8.8.8       # check internet connectivity
+ping google.com    # check DNS resolution
+```
+---
+
+#### Optional: Make persistent
+
+1. On Jetson, add default route and DNS in **NetworkManager** or `/etc/netplan/…`
+2. On PC, use **iptables-persistent** to save NAT rules:
+
+```bash
+sudo apt install iptables-persistent
+sudo netfilter-persistent save
+```
+
+### **Scenario: Windows PC → Jetson via Ethernet**
+---
+
+If your PC is Windows:
+
+1. Right-click **Wi-Fi** → Properties → **Sharing**
+2. Check **“Allow other network users to connect through this computer’s Internet connection”**
+3. Choose **Ethernet** as the target network → Jetson will get internet via Ethernet.
+
+* Jetson can still have a static IP (set gateway = PC Ethernet IP).
+
+---
+
+💡 **Tip:** Make sure PC Ethernet and Jetson Ethernet are on **same subnet** (192.168.0.x) to avoid conflicts.
+
+---
