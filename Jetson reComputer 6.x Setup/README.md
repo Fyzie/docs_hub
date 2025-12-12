@@ -295,71 +295,48 @@ Modes "1920x1080"
 EndSubSection
 EndSection
 ```
+**Before reboot**, MAKE SURE to note Jetson IP adress first to host on the NoMachine or **set a static IP**
+
 4. Reboot jetson
 ```
 sudo reboot
 ```
-5. Setup x11vnc
-```
-sudo apt install x11vnc
-```
-6. Setup avahi
-```
-sudo apt install avahi-daemon avahi-utils
-```
-7. Create system service for x11vnc
-```
-sudo nano /etc/systemd/system/x11vnc.service
-```
-8. Paste
-```
-[Unit]
-Description=x11vnc VNC Server
-After=network.target multi-user.target
-Wants=multi-user.target
+In case of forgetting to note the IP address, download Putty and get a USB to USB-C cable   
+  a. Connect USB-C to USB2.0 DEBUG   
+  b. Open Device Manager -> Ports (COM & LPT); can unplug and plug to see which COM it is   
+  c. Double-click the COM -> Port Settings -> Bits per seconds -> 115200   
+  d. Open PuTTY → Serial → COMx → 115200 baud   
+  e. Open the COM   
+  f. Key in Jetson username and password   
+  g. Find network interface; common: eth.., enp..., eno...   
+  ```
+  ip link
+  ```
+  h. Get the address of the network
+  ```
+  ip addr show {your network interface}
+  ```
+  e.g. ip addr show enP8p1s0   
+  You would find something like:  inet 192.168.137.169/24  
 
-[Service]
-Type=simple  # Changed from forking to simple
-User=jetsonN
-Environment="DISPLAY=:0"
-Environment="XAUTHORITY=/home/jetsonN/.Xauthority"
-ExecStart=/usr/bin/x11vnc -display :0 -forever -shared -rfbauth /etc/x11vnc.pass
-# Removed -bg flag for Type=simple
-Restart=on-failure
-RestartSec=5
-
-[Install]
-WantedBy=multi-user.target
-```
-9. Create password
-```
-sudo x11vnc -storepasswd /etc/x11vnc.pass
-```
-```
-# Check ownership
-sudo ls -la /etc/x11vnc.pass
-
-# Should be owned by jetson2
-sudo chown jetson2:jetsonN /etc/x11vnc.pass
-sudo chmod 600 /etc/x11vnc.pass
-```
-10. Enable and start
-```
-sudo systemctl daemon-reload
-sudo systemctl enable x11vnc
-sudo systemctl start x11vnc
-sudo systemctl status x11vnc
-```
-11. Reboot
-```
-sudo reboot
-```
-12. Check status
-```
-sudo systemctl status x11vnc
-ps aux | grep x11vnc
-```
+5. Get into NoMachine
 
 
+**NoMachine connection setup**
 
+Name: Any friendly name (e.g., `Jetson3`)
 
+Host: `192.168.137.169`
+
+Port: Leave default (`4000`)
+
+Protocol: `NX`
+
+Then connect.   
+
+---
+💡 Tip: This IP is usually dynamic after flashing.    
+
+Next time Jetson reboots or reconnects, it might change → NoMachine won’t connect.   
+
+To avoid this, should **set a static IP via NetworkManager**.   
