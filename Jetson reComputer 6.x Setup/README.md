@@ -343,6 +343,53 @@ To avoid this, should **set a static IP via NetworkManager**.
 
 ### 14. Internet Sharing on Static IP (PC to Jetson)
 
+### **Scenario: Windows PC → Jetson via Ethernet**
+---
+
+#### Windows ICS automatically sets the PC Ethernet IP
+
+When you enable ICS on the Wi-Fi adapter:
+
+- Windows **forces the Ethernet adapter to 192.168.137.1** (default ICS subnet)
+
+- It automatically acts as **gateway and DNS server** for the connected device.
+
+If manually set PC Ethernet to custom static IP, ICS may not work properly.
+
+#### Correct Windows ICS setup for Jetson
+
+**1. Reset PC Ethernet to automatic (DHCP):**
+
+- Go to **Network Connections → Ethernet → Properties → IPv4 → Obtain IP automatically**
+
+**2. Enable ICS on Wi-Fi:**
+
+- Right-click **Wi-Fi → Properties → Sharing**
+
+- Check **“Allow other network users to connect through this computer’s Internet connection”**
+
+- Select **Ethernet** as the “Home networking connection”
+
+**3. Windows will now:**
+
+- Set Ethernet IP to **192.168.137.1**
+
+- Assign connected devices **192.168.137.x** via DHCP automatically
+
+**4. Set Jetson to DHCP on Ethernet** (or manually set IP in the 192.168.137.x range, gateway `192.168.137.1`, DNS `192.168.137.1`)
+
+Example:
+```
+Jetson IP: 192.168.137.x
+Subnet mask: 255.255.255.0
+Gateway: 192.168.137.1
+DNS: 192.168.137.1
+```
+
+Basically, Jetson gateway has to be same as Windows Ethernet IP   
+
+`ping 8.8.8.8` or `ping google.com` to test internet connection on Jetson   
+
 ### **Scenario: Ubuntu PC → Jetson via Ethernet, Internet on Wi-Fi**
 ---
 
@@ -433,49 +480,3 @@ sudo apt install iptables-persistent
 sudo netfilter-persistent save
 ```
 
-### **Scenario: Windows PC → Jetson via Ethernet**
----
-
-#### Windows ICS automatically sets the PC Ethernet IP
-
-When you enable ICS on the Wi-Fi adapter:
-
-- Windows **forces the Ethernet adapter to 192.168.137.1** (default ICS subnet)
-
-- It automatically acts as **gateway and DNS server** for the connected device.
-
-If manually set PC Ethernet to custom static IP, ICS may not work properly.
-
-#### Correct Windows ICS setup for Jetson
-
-**1. Reset PC Ethernet to automatic (DHCP):**
-
-- Go to **Network Connections → Ethernet → Properties → IPv4 → Obtain IP automatically**
-
-**2. Enable ICS on Wi-Fi:**
-
-- Right-click **Wi-Fi → Properties → Sharing**
-
-- Check **“Allow other network users to connect through this computer’s Internet connection”**
-
-- Select **Ethernet** as the “Home networking connection”
-
-**3. Windows will now:**
-
-- Set Ethernet IP to **192.168.137.1**
-
-- Assign connected devices **192.168.137.x** via DHCP automatically
-
-**4. Set Jetson to DHCP on Ethernet** (or manually set IP in the 192.168.137.x range, gateway `192.168.137.1`, DNS `192.168.137.1`)
-
-Example:
-```
-Jetson IP: 192.168.137.x
-Subnet mask: 255.255.255.0
-Gateway: 192.168.137.1
-DNS: 192.168.137.1
-```
-
-Basically, Jetson gateway has to be same as Windows Ethernet IP   
-
-`ping 8.8.8.8` or `ping google.com` to test internet connection on Jetson   
