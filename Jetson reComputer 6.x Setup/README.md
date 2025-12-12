@@ -185,3 +185,59 @@ Then install:
 ```bash
 sudo dpkg -i ./code_*.deb
 ```
+
+### 11. Install Remote Desktop App (Optional)
+
+Download NoMachine for ARM DEB (arm64) for Jetson:
+[https://download.nomachine.com/download/?id=30&platform=linux&distro=arm](https://download.nomachine.com/download/?id=30&platform=linux&distro=arm)
+
+Go to Download folder:
+```
+sudo dpkg -i ./nomachine_*.deb
+```
+
+Download same for your host PC.   
+[NoMachine Website](https://www.nomachine.com/)   
+[Getting Started with NoMachine](https://www.nomachine.com/support/documents/getting-started-with-nomachine)
+
+#### For headless monitor,
+Create Xorg config
+```
+sudo nano /etc/X11/xorg.conf
+```
+Paste:
+```
+Section "Device"
+    Identifier "Device0"
+    Driver "nvidia"
+    Option "AllowEmptyInitialConfiguration" "true"
+EndSection
+
+Section "Monitor"
+    Identifier "Monitor0"
+    HorizSync 28.0-80.0
+    VertRefresh 48.0-75.0
+    Option "DPMS"
+EndSection
+
+Section "Screen"
+    Identifier "Screen0"
+    Device "Device0"
+    Monitor "Monitor0"
+    DefaultDepth 24
+    SubSection "Display"
+        Depth 24
+        Virtual 1920 1080
+    EndSubSection
+EndSection
+```
+Save, exit and reboot.
+```
+sudo reboot
+```
+#### In case to remove back,
+```
+sudo rm /etc/X11/xorg.conf
+sudo reboot
+```
+
