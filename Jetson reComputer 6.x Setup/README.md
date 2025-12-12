@@ -200,53 +200,159 @@ Download same for your host PC.
 [NoMachine Website](https://www.nomachine.com/)   
 [Getting Started with NoMachine](https://www.nomachine.com/support/documents/getting-started-with-nomachine)
 
-#### For headless monitor,
-Create Xorg config
+### 12. Remote Headless
+1. Open Terminal and Download Xorg
+```
+sudo apt-get install xserver-xorg-video-dummy
+```
+1.1. If failed ```E: Unable to locate package xserver-xorg-video-dummy```. Back up the sources.list
+```
+sudo mv /etc/apt/sources.list /etc/apt/sources.list.backup
+```
+
+1.2. Open ```sources.list```
+```
+sudo nano /etc/apt/sources.list
+```
+1.3. Paste the following text
+```
+deb http://ports.ubuntu.com/ubuntu-ports/ jammy main restricted universe multiverse
+deb http://ports.ubuntu.com/ubuntu-ports/ jammy-updates main restricted universe multiverse
+deb http://ports.ubuntu.com/ubuntu-ports/ jammy-backports main restricted universe multiverse
+deb http://ports.ubuntu.com/ubuntu-ports/ jammy-security main restricted universe multiverse
+```
+1.4. Update the package
+```
+sudo apt update
+```
+1.5. Re install the Xorg
+```
+sudo apt install xserver-xorg-video-dummy
+```
+1.6. Remove the previous Xorg config file
+```
+sudo rm /etc/X11/xorg.conf
+```
+
+
+2. Open Xorg config file
 ```
 sudo nano /etc/X11/xorg.conf
 ```
-Paste:
+3. Replace this text
+```
+# Copyright (c) 2011-2013 NVIDIA CORPORATION.  All Rights Reserved.
+
+#
+# This is the minimal configuration necessary to use the Tegra driver.
+# Please refer to the xorg.conf man page for more configuration
+# options provided by the X server, including display-related options
+# provided by RandR 1.2 and higher.
+
+# Disable extensions not useful on Tegra.
+Section "Module"
+    Disable     "dri"
+    SubSection  "extmod"
+        Option  "omit xfree86-dga"
+    EndSubSection
+EndSection
+
+Section "Device"
+    Identifier  "Tegra0"
+    Driver      "nvidia"
+# Allow X server to be started even if no display devices are connected.
+    Option      "AllowEmptyInitialConfiguration" "true"
+EndSection
+```
+To this text
 ```
 Section "Device"
-    Identifier "Device0"
-    Driver "nvidia"
-    Option "AllowEmptyInitialConfiguration" "true"
+Identifier "Configured Video Device"
+Driver "dummy"
+# Default is 4MiB, this sets it to 16MiB
+VideoRam 16384
 EndSection
 
 Section "Monitor"
-    Identifier "Monitor0"
-    HorizSync 28.0-80.0
-    VertRefresh 48.0-75.0
-    Option "DPMS"
+Identifier "Configured Monitor"
+HorizSync 31.5-48.5
+VertRefresh 50-70
 EndSection
 
 Section "Screen"
-    Identifier "Screen0"
-    Device "Device0"
-    Monitor "Monitor0"
-    DefaultDepth 24
-    SubSection "Display"
-        Depth 24
-        Virtual 1920 1080
-    EndSubSection
+Identifier "Default Screen"
+Monitor "Configured Monitor"
+Device "Configured Video Device"
+DefaultDepth 24
+SubSection "Display"
+Depth 24
+Modes "1920x1080"
+EndSubSection
 EndSection
 ```
-Save and exit.   
-Force-load a fake EDID
-```
-sudo mkdir -p /lib/firmware/edid/
-wget https://raw.githubusercontent.com/ajslater/edid-generator/master/edid.bin -O /lib/firmware/edid/fake_1920x1080.bin
-sudo nano /boot/extlinux/extlinux.conf
-video=HDMI-A-0:1920x1080@60D drm.edid_firmware=HDMI-A-0:edid/fake_1920x1080.bin
-APPEND ${cbootargs} video=HDMI-A-0:1920x1080@60D drm.edid_firmware=HDMI-A-0:edid/fake_1920x1080.bin
-```
+4. Reboot jetson
 ```
 sudo reboot
 ```
-#### In case to remove back,
+5. Setup x11vnc
 ```
-sudo rm /etc/X11/xorg.conf
+sudo apt install x11vnc
+```
+6. Setup avahi
+```
+sudo apt install avahi-daemon avahi-utils
+```
+7. Create system service for x11vnc
+```
+sudo nano /etc/systemd/system/x11vnc.service
+```
+8. Paste
+```
+[Unit]
+Description=x11vnc VNC Server
+After=network.target multi-user.target
+Wants=multi-user.target
+
+[Service]
+Type=simple  # Changed from forking to simple
+User=jetsonN
+Environment="DISPLAY=:0"
+Environment="XAUTHORITY=/home/jetsonN/.Xauthority"
+ExecStart=/usr/bin/x11vnc -display :0 -forever -shared -rfbauth /etc/x11vnc.pass
+# Removed -bg flag for Type=simple
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+```
+9. Create password
+```
+sudo x11vnc -storepasswd /etc/x11vnc.pass
+```
+```
+# Check ownership
+sudo ls -la /etc/x11vnc.pass
+
+# Should be owned by jetson2
+sudo chown jetson2:jetsonN /etc/x11vnc.pass
+sudo chmod 600 /etc/x11vnc.pass
+```
+10. Enable and start
+```
+sudo systemctl daemon-reload
+sudo systemctl enable x11vnc
+sudo systemctl start x11vnc
+sudo systemctl status x11vnc
+```
+11. Reboot
+```
 sudo reboot
+```
+12. Check status
+```
+sudo systemctl status x11vnc
+ps aux | grep x11vnc
 ```
 
 
