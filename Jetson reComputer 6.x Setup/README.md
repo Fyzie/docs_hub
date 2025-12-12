@@ -34,23 +34,20 @@ This guide describes how to flash, configure, and prepare a Jetson reComputer In
 ---
 ## **On Jetson,**
 
-### 2. Install Browser
-
-```bash
-sudo apt install epiphany-browser
-sudo chown $USER:$USER $HOME/Downloads && chmod 755 $HOME/Downloads
-```
-
----
-
-### 3. Update & Install JetPack SDK + CUDA
+### 2. Update & Install JetPack SDK + CUDA
 
 ```bash
 sudo apt update
 sudo apt install nvidia-jetpack -y
 sudo apt-get install cuda
 ```
-
+---
+### 3. Install Browser
+Make sure to install NVIDIA GPU Driver first (Step 2)
+```bash
+sudo apt install epiphany-browser
+sudo chown $USER:$USER $HOME/Downloads && chmod 755 $HOME/Downloads
+```
 ---
 
 ### 4. Install Pip & Configure CUDA Paths
