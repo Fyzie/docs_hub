@@ -231,7 +231,15 @@ Section "Screen"
     EndSubSection
 EndSection
 ```
-Save, exit and reboot.
+Save and exit.   
+Force-load a fake EDID
+```
+sudo mkdir -p /lib/firmware/edid/
+wget https://raw.githubusercontent.com/ajslater/edid-generator/master/edid.bin -O /lib/firmware/edid/fake_1920x1080.bin
+sudo nano /boot/extlinux/extlinux.conf
+video=HDMI-A-0:1920x1080@60D drm.edid_firmware=HDMI-A-0:edid/fake_1920x1080.bin
+APPEND ${cbootargs} video=HDMI-A-0:1920x1080@60D drm.edid_firmware=HDMI-A-0:edid/fake_1920x1080.bin
+```
 ```
 sudo reboot
 ```
@@ -240,4 +248,7 @@ sudo reboot
 sudo rm /etc/X11/xorg.conf
 sudo reboot
 ```
+
+
+
 
