@@ -195,6 +195,10 @@ Go to Download folder:
 ```
 sudo dpkg -i ./nomachine_*.deb
 ```
+In case of the package installation interrupted:
+```
+sudo dpkg --configure -a
+```
 
 Download same for your host PC.   
 [NoMachine Website](https://www.nomachine.com/)   
