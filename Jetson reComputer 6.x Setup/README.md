@@ -302,22 +302,22 @@ EndSection
 sudo reboot
 ```
 In case of forgetting to note the IP address, download Putty and get a USB to USB-C cable   
-  a. Connect USB-C to USB2.0 DEBUG   
-  b. Open Device Manager -> Ports (COM & LPT); can unplug and plug to see which COM it is   
-  c. Double-click the COM -> Port Settings -> Bits per seconds -> 115200   
-  d. Open PuTTY → Serial → COMx → 115200 baud   
-  e. Open the COM   
-  f. Key in Jetson username and password   
-  g. Find network interface; common: eth.., enp..., eno...   
-  ```
-  ip link
-  ```
-  h. Get the address of the network
-  ```
-  ip addr show {your network interface}
-  ```
-  e.g. ip addr show enP8p1s0   
-  You would find something like:  inet 192.168.137.169/24  
+- Connect USB-C to USB2.0 DEBUG
+- Open Device Manager -> Ports (COM & LPT); can unplug and plug to see which COM it is
+- Double-click the COM -> Port Settings -> Bits per seconds -> 115200   
+-  Open PuTTY → Serial → COMx → 115200 baud   
+-  Open the COM   
+-  Key in Jetson username and password   
+-  Find network interface; common: eth.., enp..., eno...   
+```
+ip link
+```
+- Get the address of the network
+```
+ip addr show {your network interface}
+```
+e.g. ip addr show enP8p1s0   
+You would find something like:  inet 192.168.137.169/24  
 
 5. Get into NoMachine
 
