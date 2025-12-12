@@ -198,6 +198,7 @@ sudo dpkg -i ./nomachine_*.deb
 In case of the package installation interrupted:
 ```
 sudo dpkg --configure -a
+sudo apt --fix-broken install
 ```
 
 Download same for your host PC.   
