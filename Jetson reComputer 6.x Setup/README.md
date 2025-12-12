@@ -475,4 +475,7 @@ Subnet mask: 255.255.255.0
 Gateway: 192.168.137.1
 DNS: 192.168.137.1
 ```
-Basically, Jetson gateway has to be same as Windows Ethernet IP
+
+Basically, Jetson gateway has to be same as Windows Ethernet IP   
+
+`ping 8.8.8.8` or `ping google.com` to test internet connection on Jetson   
