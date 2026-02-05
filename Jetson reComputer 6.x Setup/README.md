@@ -206,7 +206,7 @@ Download same for your host PC.
 [Getting Started with NoMachine](https://www.nomachine.com/support/documents/getting-started-with-nomachine)
 
 ### 12. Remote Headless
-1. Open Terminal and Download Xorg
+#### 1. Open Terminal and Download Xorg
 ```
 sudo apt-get install xserver-xorg-video-dummy
 ```
@@ -240,11 +240,11 @@ sudo rm /etc/X11/xorg.conf
 ```
 
 
-2. Open Xorg config file
+#### 2. Open Xorg config file
 ```
 sudo nano /etc/X11/xorg.conf
 ```
-3. Replace this text
+#### 3. Replace this text
 ```
 # Copyright (c) 2011-2013 NVIDIA CORPORATION.  All Rights Reserved.
 
@@ -297,7 +297,7 @@ EndSection
 ```
 **Before reboot**, MAKE SURE to note Jetson IP adress first to host on the NoMachine or **set a static IP**
 
-4. Reboot jetson
+#### 4. Reboot jetson
 ```
 sudo reboot
 ```
@@ -319,7 +319,7 @@ ip addr show {your network interface}
 e.g. ip addr show enP8p1s0   
 You would find something like:  inet 192.168.137.169/24  
 
-5. Get into NoMachine
+#### 5. Get into NoMachine
 
 
 **NoMachine connection setup**
@@ -340,6 +340,43 @@ Then connect.
 Next time Jetson reboots or reconnects, it might change → NoMachine won’t connect.   
 
 To avoid this, should **set a static IP via NetworkManager**.   
+
+#### 6. Remote Headless Removal
+
+6.1 Remove the dummy Xorg driver
+```
+sudo apt remove --purge xserver-xorg-video-dummy
+sudo apt autoremove
+```
+6.2 Restore / remove the custom Xorg config (Recommended)
+The dummy mode only works because of /etc/X11/xorg.conf.
+Just delete it and let Jetson auto-detect HDMI:
+```
+sudo rm /etc/X11/xorg.conf
+```
+6.3 Restore NVIDIA default behavior
+Make sure you are NOT forcing “AllowEmptyInitialConfiguration”.
+Check if any leftover configs exist:
+```
+ls /etc/X11/xorg.conf.d/
+```
+If you see files like:
+```
+10-dummy.conf
+99-headless.conf
+```
+delete them:
+```
+sudo rm /etc/X11/xorg.conf.d/*.conf
+```
+6.4 Make sure graphical target is enabled
+```
+sudo systemctl set-default graphical.target
+```
+6.5 Reboot
+```
+sudo reboot
+```
 
 ### 14. Internet Sharing on Static IP (PC to Jetson)
 
