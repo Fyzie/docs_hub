@@ -348,15 +348,15 @@ To avoid this, should **set a static IP via NetworkManager**.
 sudo apt remove --purge xserver-xorg-video-dummy
 sudo apt autoremove
 ```
-6.2 Restore / remove the custom Xorg config (Recommended)
-The dummy mode only works because of /etc/X11/xorg.conf.
-Just delete it and let Jetson auto-detect HDMI:
+6.2 Restore / remove the custom Xorg config (Recommended)   
+The dummy mode only works because of /etc/X11/xorg.conf.   
+Just delete it and let Jetson auto-detect HDMI:   
 ```
 sudo rm /etc/X11/xorg.conf
 ```
-6.3 Restore NVIDIA default behavior
-Make sure you are NOT forcing “AllowEmptyInitialConfiguration”.
-Check if any leftover configs exist:
+6.3 Restore NVIDIA default behavior   
+Make sure you are NOT forcing “AllowEmptyInitialConfiguration”.   
+Check if any leftover configs exist:   
 ```
 ls /etc/X11/xorg.conf.d/
 ```
