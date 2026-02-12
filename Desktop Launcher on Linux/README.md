@@ -121,7 +121,7 @@ ExecStart=/home/pi/Documents/lenv/bin/python main.py
 Restart=always
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=graphical.target
 ```
 
 Enable:
