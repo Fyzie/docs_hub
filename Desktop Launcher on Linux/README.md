@@ -101,6 +101,8 @@ Better approach is:
 
 ### Run automatically on boot
 
+#### Option 1. Using Systemd
+
 Create systemd service:
 
 ```bash
@@ -108,7 +110,7 @@ sudo nano /etc/systemd/system/lensavi.service
 ```
 
 Paste:
-
+Without GUI:
 ```ini
 [Unit]
 Description=Lens AVI Coordinator
@@ -121,15 +123,104 @@ ExecStart=/home/pi/Documents/lenv/bin/python main.py
 Restart=always
 
 [Install]
+WantedBy=multi-user.target
+```
+With GUI:
+```ini
+[Unit]
+Description=Lens AVI Coordinator
+After=graphical.target
+Wants=graphical.target
+
+[Service]
+Type=simple
+User=pi
+Environment=DISPLAY=:0
+ExecStartPre=/bin/sleep 10
+ExecStart=/home/pi/Documents/lenv/bin/python /home/pi/Documents/lens_avi/main.py
+WorkingDirectory=/home/pi/Documents/lens_avi
+Restart=on-failure
+
+[Install]
 WantedBy=graphical.target
 ```
-
 Enable:
 
 ```bash
 sudo systemctl daemon-reload
 sudo systemctl enable lensavi.service
 sudo systemctl start lensavi.service
+```
+Disable:
+```bash
+sudo systemctl disable lensavi.service
+sudo systemctl stop lensavi.service
+```
+#### Option 2. Desktop AutoStart
+If using systemd does not work, try **desktop autostart** for the `pi` user as below:
+
+1. Create the autostart folder if it doesn’t exist:
+
+```bash
+mkdir -p /home/pi/.config/lxsession/LXDE-pi
+```
+
+2. Create or edit the autostart file:
+
+```bash
+nano /home/pi/.config/lxsession/LXDE-pi/autostart
+```
+
+3. Add your app:
+
+```text
+@/home/pi/Documents/lenv/bin/python /home/pi/Documents/lens_avi/main.py &
+```
+
+4. Make sure your app is executable:
+
+```bash
+chmod +x /home/pi/Documents/lens_avi/main.py
+```
+
+5. Reboot into desktop mode. The app should start full-screen (or maximized).
+
+#### Option 3. Desktop AutoStart (Wrapper)
+Create a wrapper script:
+
+```bash
+nano /home/pi/Documents/lens_avi/start_lensavi.sh
+```
+
+```bash
+#!/bin/bash
+# Keep the desktop alive if app exits
+while true; do
+    /home/pi/Documents/lenv/bin/python /home/pi/Documents/lens_avi/main.py
+    sleep 5
+done
+```
+
+* Make it executable:
+
+```bash
+chmod +x /home/pi/Documents/lens_avi/start_lensavi.sh
+```
+
+* Change autostart to:
+
+```text
+mkdir -p /home/pi/.config/lxsession/LXDE-pi
+nano /home/pi/.config/lxsession/LXDE-pi/autostart
+@/home/pi/Documents/lens_avi/start_lensavi.sh
+```
+
+* Now, even if your app crashes, it will restart automatically, and desktop won’t go blank.
+
+---
+If want to **REMOVE** the autostart file:
+```
+rm /home/pi/.config/lxsession/LXDE-pi/autostart
 ```
 
 Now:
