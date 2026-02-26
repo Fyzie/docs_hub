@@ -212,6 +212,9 @@ chmod +x /home/pi/Documents/lens_avi/start_lensavi.sh
 ```text
 mkdir -p /home/pi/.config/lxsession/LXDE-pi
 nano /home/pi/.config/lxsession/LXDE-pi/autostart
+```
+* Write in the autostart:
+```
 @/home/pi/Documents/lens_avi/start_lensavi.sh
 ```
 
