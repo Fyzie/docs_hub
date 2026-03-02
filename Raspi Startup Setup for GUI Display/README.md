@@ -1,6 +1,6 @@
 # Raspberry Pi Setup
 
-To run PySide6 GUI, need to change Wayland to X11 server
+To run PySide6 GUI at startup, need to change Wayland to X11 server
 
 sudo raspi-config
 Advanced Settings > Wayland > X11
