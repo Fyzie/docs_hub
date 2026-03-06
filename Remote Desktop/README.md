@@ -26,6 +26,9 @@ For the installation code,
 7. Get the generated installation code (e.g. 145-141-535)
 8. Key in into the agent
 
+You should see Agent is active and online at **All** section on the website.   
+You can connect to the Agent by clicking on it.   
+
 ---
 
 ### Notes:
