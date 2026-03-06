@@ -1,13 +1,13 @@
 # Remote Desktop with DWAgent
 
-## Linux
+## Linux - Ubuntu
 Visit the website [DWAgent](https://www.dwservice.net/en/home.html)     
-Open Terminal and navigate to Downloads folder:
+On Terminal, navigate to download folder (e.g. Downloads):
 ```
 cd Downloads
 ```
 
-Execute the permission:
+Allow full permission:
 ```
 chmod +x dwagent.sh
 ```
@@ -16,3 +16,17 @@ Install the software:
 ```
 sudo ./dwagent.sh
 ```
+
+For the installation code,
+1. Log in into the website
+2. Go to Agents
+4. From the menu on the left, select the All
+5. Click the + (Plus) sign.
+6. Fill in agent name and Confirm. Group and Description are optional.
+7. Get the generated installation code (e.g. 145-141-535)
+8. Key in into the agent
+
+---
+
+### Notes:
+- Make sure to allow unattended access on DWAgent monitor window on the agent to prevent repetitive request access
