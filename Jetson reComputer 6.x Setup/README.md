@@ -14,7 +14,7 @@ This guide describes how to flash, configure, and prepare a Jetson reComputer In
 ---
 ## **On Ubuntu,**
 
-### 1. Flash Jetpack 6.x Using NVIDIA SDK Manager
+### Option 1. Flash Jetpack 6.x Using NVIDIA SDK Manager
 
 
 1. Download **NVIDIA SDK Manager** (22.04+)
@@ -30,6 +30,10 @@ This guide describes how to flash, configure, and prepare a Jetson reComputer In
    * Connect the 2-Pin power connector.
    * Power on the board.
 4. Release the recovery button.
+
+### Option 2. (Recommended) Flash Jetpack 6.x Using Downloadable System Image
+1. Youtube Guide [link](https://www.youtube.com/watch?v=poQ4JQw56Gc)
+2. Website Documentation [link](https://wiki.seeedstudio.com/reComputer_J4012_Flash_Jetpack/)
 
 ---
 ## **On Jetson,**
