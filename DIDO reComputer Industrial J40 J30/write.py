@@ -14,9 +14,9 @@ request = chip.request_lines(
 
 try:
     while True:
-        request.set_values({51:gpiod.line.Value.ACTIVE}) 
+        request.set_values({line:gpiod.line.Value.ACTIVE}) 
         time.sleep(0.01)
-        request.set_values({51:gpiod.line.Value.INACTIVE})
+        request.set_values({line:gpiod.line.Value.INACTIVE})
         time.sleep(0.01)
 except KeyboardInterrupt:
     print("Exit")
