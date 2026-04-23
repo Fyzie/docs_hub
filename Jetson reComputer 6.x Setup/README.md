@@ -38,7 +38,7 @@ This guide describes how to flash, configure, and prepare a Jetson reComputer In
 ---
 ## **On Jetson,**
 
-### 2. Update & Install JetPack SDK + CUDA
+### 2. Update & Install JetPack SDK + CUDA (If none installed initially)
 
 ```bash
 sudo apt update
