@@ -16,3 +16,6 @@ For PySide6, you might need to copy plugins from your environment folder to gene
 ```
 python -m nuitka --standalone --enable-plugin=pyside6 --windows-console-mode=disable --include-qt-plugins=platforms,imageformats --include-package=core --include-package=ui --include-data-dir=resources=resources --output-dir=dist main.py
 ```
+2. Once dist folder generated, you have to copy PySide6 plugins as before
+3. and also all .dll files within related driver folder
+4. example path of camera .dll files: `C:\Program Files\Allied Vision\Vimba X\bin`
