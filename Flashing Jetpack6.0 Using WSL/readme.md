@@ -54,14 +54,32 @@ lsusb
 Similar ouput: `Bus 001 Device 002: ID 0955:7523 NVidia Corp.`
 
 ## 8. Flash the image
-Go to the image folder,   
+Go to the image folder and cp to wsl env,   
 (e.g., your home folder or a path on your C drive like /mnt/c/Users/<YourUsername>/Downloads):
+```
+cp /mnt/c/path/to/your/<file_name>.tar.gz ~
+```
+Go tho home wsl
 ```
 cd ~
 ```
 Extract the file
 ```
 sudo tar -xvf <file_name>.tar.gz
+```
+Go to extracted file
+```
+cd mfi_xxxx
+```
+Update necessary packages
+```
+sudo apt update
+sudo apt install -y sshpass
+sudo apt-get install -y nfs-kernel-server
+```
+Flash
+```
+sudo ./tools/kernel_flash/l4t_initrd_flash.sh --flash-only --massflash 1 --network usb0 --showlogs
 ```
 
 
