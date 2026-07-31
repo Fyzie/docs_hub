@@ -1,4 +1,5 @@
 # Flashing Jetpack6.0 Using WSL
+> All terminals should run as admin
 
 ## 1. Download the image
 Link [here](https://wiki.seeedstudio.com/reComputer_Industrial_Getting_Started/)
@@ -11,8 +12,13 @@ wsl.exe --list --online
 ```
 wsl.exe --install Ubuntu-24.04
 ```
+To enter wsl, type
+```
+wsl
+```
+
 ## 3. Install usbipd
-On Windows Powershell,
+On Windows Powershell (new terminal),
 ```
 winget install usbipd
 ```
@@ -57,3 +63,6 @@ Extract the file
 ```
 sudo tar -xvf <file_name>.tar.gz
 ```
+
+
+
