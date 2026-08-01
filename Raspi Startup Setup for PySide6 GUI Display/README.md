@@ -1,12 +1,17 @@
 # Raspberry Pi Setup
 
-To run PySide6 GUI at startup, need to change Wayland to X11 server
+To run PySide6 GUI at startup, need to change **Wayland** to **X11 server**
 
+```
 sudo raspi-config
-Advanced Settings > Wayland > X11
+``` 
+Advanced Settings > Wayland > X11   
+```
 reboot
+```
 
-sudo apt update
+```
+sudo apt update \
 sudo apt install -y \
     libxcb-xinerama0 \
     libxcb-cursor0 \
@@ -17,3 +22,4 @@ sudo apt install -y \
     libxcb-render-util0 \
     libxcb-shape0 \
     libxcb-xfixes0
+```
