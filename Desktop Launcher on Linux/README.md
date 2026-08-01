@@ -97,7 +97,7 @@ It’s:
 
 Since your Pi is coordinator:
 
-Better approach is:
+Best approach tested: **Option 3**
 
 ### Run automatically on boot
 
