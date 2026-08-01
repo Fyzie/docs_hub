@@ -98,7 +98,8 @@ It’s:
 
 Since your Pi is coordinator:
 
-Best approach tested: **Option 3**
+Best approach tested: **Option 3**   
+In case your app use PySide6, might want to look into [this](https://github.com/Fyzie/docs_hub/blob/main/Raspi%20Startup%20Setup%20for%20PySide6%20GUI%20Display/README.md)
 
 ### Run automatically on boot
 
