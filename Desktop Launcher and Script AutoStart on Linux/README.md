@@ -1,4 +1,5 @@
 This is quickest way (as I know) to create desktop launcher without compiling all materials.
+Disadvatages: Need to copy exact environment
 
 ## 1️⃣ Create Desktop Launcher
 
