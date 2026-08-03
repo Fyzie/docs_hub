@@ -154,7 +154,9 @@ pip install pypylon
 ```bash
 pip install torch torchvision torchaudio --index-url https://pypi.jetson-ai-lab.io/jp6/cu126/
 ```
-
+```
+pip install nvidia-cudss-cu12
+```
 #### Verify CUDA
 
 ```bash
