@@ -32,6 +32,10 @@ This guide describes how to flash, configure, and prepare a Jetson reComputer In
 4. Release the recovery button.
 
 ### Option 2. (Recommended) Flash Jetpack 6.x Using Downloadable System Image
+Refer [here](https://github.com/Fyzie/docs_hub/tree/main/reComputer%20Industrial%20Flashing%20Steps)
+   
+or   
+   
 1. Youtube Guide [link](https://www.youtube.com/watch?v=poQ4JQw56Gc)
 2. Website Documentation [link](https://wiki.seeedstudio.com/reComputer_J4012_Flash_Jetpack/)
 
