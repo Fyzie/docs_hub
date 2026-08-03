@@ -160,6 +160,13 @@ pip install torch torchvision torchaudio --index-url https://pypi.jetson-ai-lab.
 ```bash
 python3 -c "import torch; print(f'PyTorch: {torch.__version__}'); print(f'CUDA Available: {torch.cuda.is_available()}'); print(f'CUDA Version: {torch.version.cuda}')"
 ```
+if its not working, uninstall torch torchvision and try below:
+```
+pip install torch --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v60
+```
+```
+pip install --no-deps torchvision
+```
 
 #### UI & OS libraries
 
