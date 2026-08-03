@@ -154,30 +154,18 @@ pip install pypylon
 ```bash
 pip install torch torchvision torchaudio --index-url https://pypi.jetson-ai-lab.io/jp6/cu126/
 ```
-```
-pip install nvidia-cudss-cu12
-```
-Locate the library inside your virtual environment:
-```
-find ~/.local /home/jetson/Documents/mvision -name "libcudss.so*" 2>/dev/null
-```
-Example output:
-> /home/jetson/Documents/mvision/lib/python3.10/site-packages/nvidia/cu12/lib/libcudss.so.0
-
-Copy the path and add to LD_LIBRARY_PATH accordingly
-```
-export LD_LIBRARY_PATH=/home/jetson/Documents/mvision/lib/python3.10/site-packages/nvidia/cu12/lib:$LD_LIBRARY_PATH
-```
-Fix it permanently for the virtual environment
-```
-echo 'export LD_LIBRARY_PATH=/home/jetson/Documents/mvision/lib/python3.10/site-packages/nvidia/cu12/lib:$LD_LIBRARY_PATH' >> /home/jetson/Documents/mvision/bin/activate
-```
 #### Verify CUDA
 
 ```bash
 python3 -c "import torch; print(f'PyTorch: {torch.__version__}'); print(f'CUDA Available: {torch.cuda.is_available()}'); print(f'CUDA Version: {torch.version.cuda}')"
 ```
-
+If error,
+```
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/arm64/cuda-keyring_1.1-1_all.deb
+sudo dpkg -i cuda-keyring_1.1-1_all.deb
+sudo apt-get update
+sudo apt-get -y install cudss
+```
 #### UI & OS libraries
 
 ```bash
