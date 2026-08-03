@@ -82,7 +82,7 @@ source ~/.bashrc
 ### 5. Install JTOP (Jetson Stats)
 
 ```bash
-sudo python3.10 -m pip install -u jetson-stats
+sudo pip3 install -U jetson-stats
 sudo systemctl restart jtop.service
 sudo reboot
 ```
