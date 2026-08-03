@@ -168,6 +168,10 @@ Copy the path and add to LD_LIBRARY_PATH accordingly
 ```
 export LD_LIBRARY_PATH=/home/jetson/Documents/mvision/lib/python3.10/site-packages/nvidia/cu12/lib:$LD_LIBRARY_PATH
 ```
+Fix it permanently for the virtual environment
+```
+echo 'export LD_LIBRARY_PATH=/home/jetson/Documents/mvision/lib/python3.10/site-packages/nvidia/cu12/lib:$LD_LIBRARY_PATH' >> /home/jetson/Documents/mvision/bin/activate
+```
 #### Verify CUDA
 
 ```bash
