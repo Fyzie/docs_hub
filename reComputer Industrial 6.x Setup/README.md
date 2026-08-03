@@ -46,6 +46,9 @@ or
 
 ```bash
 sudo apt update
+```
+If your Jetson has issue no cuda detected through [jtop](https://github.com/Fyzie/docs_hub/edit/main/reComputer%20Industrial%206.x%20Setup/README.md#5-install-jtop-jetson-stats), do below:
+```
 sudo apt install nvidia-jetpack -y
 sudo apt-get install cuda
 ```
@@ -93,7 +96,7 @@ sudo reboot
 
 ---
 
-### 6. Install Miniconda (AArch64)
+### 6. Install Miniconda (AArch64) or Virtual Environment
 
 ```bash
 mkdir -p ~/miniconda3
@@ -202,7 +205,7 @@ Then install:
 sudo dpkg -i ./code_*.deb
 ```
 
-### 11. Install Remote Desktop App (Optional)
+### 11. Install Remote Desktop App (Deprecated)
 
 Download NoMachine for ARM DEB (arm64) for Jetson:
 [https://download.nomachine.com/download/?id=30&platform=linux&distro=arm](https://download.nomachine.com/download/?id=30&platform=linux&distro=arm)
