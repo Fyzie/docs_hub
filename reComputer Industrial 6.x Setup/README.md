@@ -83,7 +83,7 @@ source ~/.bashrc
 
 ```bash
 sudo pip3 install -U jetson-stats
-sudo systemctl restart jtop.service
+sudo jtop --install-service
 sudo reboot
 ```
 
