@@ -154,6 +154,11 @@ pip install pypylon
 ```bash
 pip install torch torchvision torchaudio --index-url https://pypi.jetson-ai-lab.io/jp6/cu126/
 ```
+if cannot, follow [here](https://docs.ultralytics.com/guides/nvidia-jetson#install-ultralytics-package) for Jetpack 6.
+```
+pip install https://github.com/ultralytics/assets/releases/download/v0.0.0/torch-2.10.0-cp310-cp310-linux_aarch64.whl
+pip install https://github.com/ultralytics/assets/releases/download/v0.0.0/torchvision-0.25.0-cp310-cp310-linux_aarch64.whl
+```
 
 #### Verify CUDA
 
