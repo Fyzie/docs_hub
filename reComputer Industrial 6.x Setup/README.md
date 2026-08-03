@@ -99,6 +99,10 @@ rm ~/miniconda3/miniconda.sh
 source ~/miniconda3/bin/activate
 conda init --all
 ```
+Alternatively, can use python virtual environment:
+```
+sudo apt install python3.10-venv
+```
 
 ---
 
@@ -122,6 +126,10 @@ sudo apt-get install ./pylon_*.deb ./codemeter*.deb
 ```bash
 conda create --name pygpu python=3.10
 conda activate pygpu
+```
+Alternatively, to activate virtual environment:
+```
+source myenv/bin/activate
 ```
 
 ---
