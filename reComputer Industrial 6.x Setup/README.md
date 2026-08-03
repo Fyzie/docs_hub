@@ -47,7 +47,7 @@ or
 ```bash
 sudo apt update
 ```
-If your Jetson has issue no cuda detected through [jtop](https://github.com/Fyzie/docs_hub/edit/main/reComputer%20Industrial%206.x%20Setup/README.md#5-install-jtop-jetson-stats), do below:
+If your Jetson has issue no cuda detected through [jtop](https://github.com/Fyzie/docs_hub/tree/main/reComputer%20Industrial%206.x%20Setup#5-install-jtop-jetson-stats), do below:
 ```
 sudo apt install nvidia-jetpack -y
 sudo apt-get install cuda
