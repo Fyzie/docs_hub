@@ -110,7 +110,7 @@ Alternatively, can use python virtual environment:
 ```
 sudo apt install python3.10-venv
 ```
-
+> If later having issues with cuda within environment, just use and install everything on NATIVE python :)
 ---
 
 ### 7. Install Basler Pylon (AArch64)
