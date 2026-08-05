@@ -61,6 +61,11 @@ Terminal=false
 X-GNOME-Autostart-enabled=true
 ```
 Save and exit (Ctrl + O, Enter, Ctrl + X).
+   
+4. To disable the autostart, just remove the file:
+```
+rm ~/.config/autostart/visionengine.desktop
+```
 
 ## Step 3: Enable Auto-Login on Jetson
 Because .desktop startup entries trigger when a user logs in, automatic desktop login must be enabled so the system doesn't pause at a password screen.   
