@@ -98,7 +98,7 @@ It’s:
 
 Since your Pi is coordinator:
 
-Best approach tested: **Option 3**   
+Best approach tested: [**Option 3**](https://github.com/Fyzie/docs_hub/blob/main/Raspi%20Desktop%20Launcher%20and%20Script%20AutoStart/README.md#option-3-desktop-autostart-wrapper)   
 In case your app use PySide6, might want to look into [this](https://github.com/Fyzie/docs_hub/blob/main/Raspi%20Startup%20Setup%20for%20PySide6%20GUI%20Display/README.md)
 
 > WARNING : if you are about to set this app and "this app" is (1) with GUI, (2) top taskbar removed and (3) set to full screen, better to have *minimize* and *exit* button
