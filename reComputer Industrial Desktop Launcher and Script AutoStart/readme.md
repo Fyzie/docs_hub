@@ -1,5 +1,5 @@
 # GUI Auto Startup for Jetson
-> Note: the directory path in this guidance is just a dummy, thus, change accordingly
+> Note: the directory path in this guidance is just a dummy, thus, change accordingly   
 > Always make sure your GUI has minimize and exit button first, **believe me**
 
 ## Step 1: Create the Startup Shell Script
