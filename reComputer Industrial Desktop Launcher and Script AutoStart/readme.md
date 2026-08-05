@@ -23,8 +23,16 @@ export DISPLAY=${DISPLAY:-:0}
 xhost +local:root >/dev/null 2>&1 || true
 xhost +local:$USER >/dev/null 2>&1 || true
 
-# Run main application using system Python 3
-/usr/bin/python3 main.py
+# Infinite loop to keep restarting application if closed or crashed
+while true; do
+    echo "[$(date)] Starting VisionEngine application..."
+    /usr/bin/python3 main.py
+    EXIT_CODE=$?
+    
+    echo "[$(date)] Application exited with status code: $EXIT_CODE"
+    echo "Restarting application in 2 seconds..."
+    sleep 2
+done
 ```
 Save and exit (Ctrl + O, Enter, Ctrl + X).   
 
