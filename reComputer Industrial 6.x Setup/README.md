@@ -233,7 +233,7 @@ Download same for your host PC.
 [NoMachine Website](https://www.nomachine.com/)   
 [Getting Started with NoMachine](https://www.nomachine.com/support/documents/getting-started-with-nomachine)
 
-### 12. Remote Headless
+### 12. Remote Headless (Optional if you dont have GUI-based script)
 #### 1. Open Terminal and Download Xorg
 ```
 sudo apt-get install xserver-xorg-video-dummy
