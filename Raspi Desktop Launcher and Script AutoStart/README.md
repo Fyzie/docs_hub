@@ -224,6 +224,34 @@ nano /home/pi/.config/lxsession/LXDE-pi/autostart
 
 * Now, even if your app crashes, it will restart automatically, and desktop won’t go blank.
 
+**NOTE**: If your script is an GUI app (e.g. to run PySide6 GUI at startup):   
+
+1. Install below:
+
+```
+sudo apt update \
+sudo apt install -y \
+    libxcb-xinerama0 \
+    libxcb-cursor0 \
+    libxkbcommon-x11-0 \
+    libxcb-icccm4 \
+    libxcb-image0 \
+    libxcb-keysyms1 \
+    libxcb-render-util0 \
+    libxcb-shape0 \
+    libxcb-xfixes0
+```
+
+2. Change **Wayland** to **X11 server**
+
+```
+sudo raspi-config
+``` 
+Advanced Settings > Wayland > X11   
+```
+reboot
+```
+
 ---
 If want to **REMOVE** the autostart file:
 ```
