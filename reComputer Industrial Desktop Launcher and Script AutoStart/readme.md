@@ -83,11 +83,15 @@ sudo apt-get install -y libxcb-cursor0 libx11-xcb1
 
 ## Step 5: Configure Hardware Permissions for GPIO (/dev/gpiochip*)
 If the program does not have gpio usage, skip to Step 6
-1. Add a udev rule to grant full read/write access to GPIO chips:
+1. Install the package
+```
+pip install gpiod
+```
+2. Add a udev rule to grant full read/write access to GPIO chips:
 ```
 echo 'SUBSYSTEM=="gpio", KERNEL=="gpiochip*", MODE="0666"' | sudo tee /etc/udev/rules.d/99-gpio.rules
 ```
-2. Reload the udev rules:
+3. Reload the udev rules:
 ```
 sudo udevadm control --reload-rules
 sudo udevadm trigger
