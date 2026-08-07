@@ -116,6 +116,8 @@ sudo reboot
 ---
 
 ### 6. Install Miniconda (AArch64) or Virtual Environment
+> WARNING: I would recommend to just use and install everything on NATIVE python :)   
+> to avoid unnecessary issues with CUDA/ CUDNN within environments   
 
 ```bash
 mkdir -p ~/miniconda3
@@ -129,7 +131,6 @@ Alternatively, can use python virtual environment:
 ```
 sudo apt install python3.10-venv
 ```
-> If later having issues with CUDA/ CUDNN within environments, just use and install everything on NATIVE python :)
 ---
 
 ### 7. Install Basler Pylon (AArch64)
