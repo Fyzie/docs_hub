@@ -78,6 +78,10 @@ Make sure to install NVIDIA GPU Driver first (Step 2)
 sudo apt install epiphany-browser
 sudo chown $USER:$USER $HOME/Downloads && chmod 755 $HOME/Downloads
 ```
+```
+sudo chown -R $USER:$USER ~/Downloads
+cd ~/Downloads
+```
 ---
 
 ### 4. Install Pip & Configure CUDA Paths
