@@ -47,6 +47,25 @@ or
 ```bash
 sudo apt update
 ```
+If you had problems with the update, might be due to backdated clock:
+1. Check Current System Date
+```
+date
+```
+2. Enable Network Time Sync (NTP)
+```
+sudo timedatectl set-ntp true
+```
+3. Set Date Manually (If NTP fails to sync automatically)
+```
+sudo date -s "2026-08-07 10:10:00"
+```
+4. Verify Hardware Clock Sync
+```
+sudo hwclock --systohc
+```
+Then, you can update back the system
+
 If your Jetson has issue no cuda detected through [jtop](https://github.com/Fyzie/docs_hub/tree/main/reComputer%20Industrial%206.x%20Setup#5-install-jtop-jetson-stats), do below:
 ```
 sudo apt install nvidia-jetpack -y
