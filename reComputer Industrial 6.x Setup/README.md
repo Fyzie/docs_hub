@@ -166,6 +166,11 @@ source myenv/bin/activate
 ---
 
 ### 9. Install Dependencies
+> In case got warning about pip PATH:
+```
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+```
 
 #### Pylon binding
 
