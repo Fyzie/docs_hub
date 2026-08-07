@@ -243,10 +243,7 @@ sudo dpkg -i ./code_*.deb
 
 Download NoMachine for ARM DEB (arm64) for Jetson:
 [https://download.nomachine.com/download/?id=30&platform=linux&distro=arm](https://download.nomachine.com/download/?id=30&platform=linux&distro=arm)
-or   
-```
-wget https://web9001.nomachine.com/download/10.0/Arm/nomachine-personal-edition_10.0.57_2_arm64.deb
-```
+
 
 Go to Download folder:
 ```
