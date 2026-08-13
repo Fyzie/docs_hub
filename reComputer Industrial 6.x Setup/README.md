@@ -241,7 +241,7 @@ sudo dpkg -i ./code_*.deb
 
 ### 11. Install Remote Desktop App (Deprecated)
 
-Download NoMachine for ARM DEB (arm64) for Jetson:
+Download NoMachine for ARM DEB (arm64) for Jetson (v10 is not free anymore):
 [https://download.nomachine.com/download/?id=30&platform=linux&distro=arm](https://download.nomachine.com/download/?id=30&platform=linux&distro=arm)
 
 
