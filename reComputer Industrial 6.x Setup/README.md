@@ -259,6 +259,9 @@ Download same for your host PC.
 [NoMachine Website](https://www.nomachine.com/)   
 [Getting Started with NoMachine](https://www.nomachine.com/support/documents/getting-started-with-nomachine)
 
+### 11.1. Alternative Remote Desktop App (RustDesk)
+[RustDesk](https://rustdesk.com/)
+
 ### 12. Remote Headless (Optional if you dont have GUI-based script)
 #### 1. Open Terminal and Download Xorg
 ```
