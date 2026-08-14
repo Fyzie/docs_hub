@@ -266,6 +266,13 @@ If its installation is broken,
 ```
 sudo apt-get install -f
 ```
+Open RustDesk on terminal
+```
+rustdesk
+```
+
+1. Go to Settings>Security
+2. Set using permanent password (e.g. Jetson1234) and enable direct IP access
 
 ### 12. Remote Headless (Optional if you dont have GUI-based script)
 #### 1. Open Terminal and Download Xorg
