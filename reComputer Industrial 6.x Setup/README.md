@@ -262,6 +262,11 @@ Download same for your host PC.
 ### 11.1. Alternative Remote Desktop App (RustDesk)
 [RustDesk](https://rustdesk.com/)
 
+If its installation is broken, 
+```
+sudo apt-get install -f
+```
+
 ### 12. Remote Headless (Optional if you dont have GUI-based script)
 #### 1. Open Terminal and Download Xorg
 ```
