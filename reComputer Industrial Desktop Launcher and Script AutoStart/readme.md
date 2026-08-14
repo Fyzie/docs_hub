@@ -97,7 +97,20 @@ sudo udevadm control --reload-rules
 sudo udevadm trigger
 ```
 
-## Step 6: Test the Setup
+## Step 6: Disable the "Show Desktop" Shortcut in GNOME (System Level)
+To disable the shortcut entirely on the Jetson operating system so operators cannot press Super + D at all, clear the shortcut keybinding via terminal.   
+
+Run this command directly in the Jetson terminal:
+
+```
+gsettings set org.gnome.desktop.wm.keybindings show-desktop "['']"
+```
+To re-enable it later (if needed):
+```
+gsettings reset org.gnome.desktop.wm.keybindings show-desktop
+```
+
+## Step 7: Test the Setup
 ```
 "/home/jetson/Documents/deployment/autostart_app.sh"
 ```
