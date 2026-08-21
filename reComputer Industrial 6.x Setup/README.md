@@ -586,3 +586,12 @@ sudo apt install iptables-persistent
 sudo netfilter-persistent save
 ```
 
+### 15. Allow RS232 Communication
+Need to change DIP switches on the board from 0101 to 0011   
+  
+Refer [here](https://files.seeedstudio.com/wiki/reComputer-Industrial/53.png)
+   
+And execute:
+```
+sudo usermod -aG dialout $USER
+```
