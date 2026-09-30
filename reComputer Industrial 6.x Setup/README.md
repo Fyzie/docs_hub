@@ -586,6 +586,52 @@ sudo apt install iptables-persistent
 sudo netfilter-persistent save
 ```
 
+### **Scenario: RasPi → Jetson via Ethernet, Internet on Wi-Fi**
+---
+On Raspi,   
+Check Raspi IP:   
+```
+ip -4 addr show
+```
+```
+hostname -I
+```
+
+```
+sudo apt update && sudo apt install -y iptables iptables-persistent
+```
+```
+# 1. Enable IP forwarding instantly
+sudo sysctl -w net.ipv4.ip_forward=1
+
+# 2. Set up NAT / Masquerading so the Pi translates the traffic
+sudo iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE
+sudo iptables -A FORWARD -i wlan0 -o eth0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+sudo iptables -A FORWARD -i eth0 -o wlan0 -j ACCEPT
+
+# 3. Save rules so they persist after rebooting the Pi
+sudo apt install -y iptables-persistent
+sudo netfilter-persistent save
+```
+```
+sudo apt install -y iptables-persistent
+sudo netfilter-persistent save
+```
+
+On Jetson,   
+```
+Gateway / Router: 192.168.1.100 (Must be the Pi's Ethernet IP)
+
+DNS: 8.8.8.8 (or 1.1.1.1)
+```
+Force-add the default gateway route
+```
+sudo ip route add default via 192.168.0.100 dev enP8p1s0
+```
+```
+ping 8.8.8.8
+```
+
 ### 15. Allow RS232 Communication
 Need to change DIP switches on the board from 0101 to 0011   
   
