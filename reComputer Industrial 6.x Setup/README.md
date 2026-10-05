@@ -52,9 +52,9 @@ If you had problems with the update, might be due to backdated clock:
 ```
 date
 ```
-2. Enable Network Time Sync (NTP)
+2. Disable NTP so it doesn't override set time
 ```
-sudo timedatectl set-ntp true
+sudo timedatectl set-ntp false
 ```
 3. Set Date Manually (If NTP fails to sync automatically)
 ```
@@ -65,6 +65,10 @@ sudo date -s "2026-08-07 10:10:00"
 sudo hwclock --systohc
 ```
 Then, you can update back the system
+```
+timedatectl status
+```
+Should all clocks are similar.
 
 If your Jetson has issue no cuda detected through [jtop](https://github.com/Fyzie/docs_hub/tree/main/reComputer%20Industrial%206.x%20Setup#5-install-jtop-jetson-stats), do below:
 ```
