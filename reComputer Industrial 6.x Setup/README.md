@@ -121,6 +121,21 @@ sudo jtop --install-service
 sudo reboot
 ```
 
+For better ram usage, increase swap space
+```
+# Disable current swap temporarily
+sudo swapoff -a
+
+# Create a larger swap file (e.g., 8GB)
+sudo dd if=/dev/zero of=/swapfile bs=1G count=8
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+
+# Verify the new swap size
+free -h
+```
+
 ---
 
 ### 6. Install Miniconda (AArch64) or Virtual Environment
