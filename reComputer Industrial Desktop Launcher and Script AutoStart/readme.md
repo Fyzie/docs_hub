@@ -18,8 +18,13 @@ sleep 5
 # Move to the exact project directory so relative paths work
 cd /home/jetson/Documents/deployment || exit 1
 
-# Log all stdout and stderr to a file for debugging
-exec > /home/jetson/Documents/deployment/autostart.log 2>&1
+# Keep only the last 500 lines from previous boots so the file stays tiny (< 100 KB)
+if [ -f autostart.log ]; then
+    tail -n 500 autostart.log > autostart.log.tmp && mv autostart.log.tmp autostart.log
+fi
+
+# Run your app and cap live output to the last 2,000 lines in memory/disk
+exec >> /home/jetson/Documents/deployment/autostart.log 2>&1
 
 # Grant display access and detect active DISPLAY
 export DISPLAY=${DISPLAY:-:0}
