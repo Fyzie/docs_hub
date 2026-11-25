@@ -15,8 +15,11 @@ nano "/home/jetson/Documents/deployment/autostart_app.sh"
 # Wait 5 seconds for X11 desktop environment and hardware to load
 sleep 5
 
-# Set project working directory
-cd /home/jetson/Documents/deployment
+# Move to the exact project directory so relative paths work
+cd /home/jetson/Documents/deployment || exit 1
+
+# Log all stdout and stderr to a file for debugging
+exec > /home/jetson/Documents/deployment/autostart.log 2>&1
 
 # Grant display access and detect active DISPLAY
 export DISPLAY=${DISPLAY:-:0}
@@ -60,13 +63,23 @@ Exec="/home/jetson/Documents/deployment/autostart_app.sh"
 Terminal=false
 X-GNOME-Autostart-enabled=true
 ```
-Save and exit (Ctrl + O, Enter, Ctrl + X).
+Save and exit (Ctrl + O, Enter, Ctrl + X).   
    
-4. To disable the autostart, just remove the file:
+4.  Make the file executable:
+```
+chmod +x ~/.config/autostart/visionengine.desktop
+```
+
+5. To disable the autostart, just remove the file:
 ```
 rm ~/.config/autostart/visionengine.desktop
 ```
 
+6. Test the exact .desktop launcher manually without rebooting:
+```
+gio launch ~/.config/autostart/visionengine.desktop
+```
+   
 ## Step 3: Enable Auto-Login on Jetson
 Because .desktop startup entries trigger when a user logs in, automatic desktop login must be enabled so the system doesn't pause at a password screen.   
 1. Open System Settings -> User Accounts on Jetson desktop.
