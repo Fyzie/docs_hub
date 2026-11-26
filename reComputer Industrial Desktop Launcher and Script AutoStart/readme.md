@@ -64,7 +64,7 @@ nano ~/.config/autostart/visionengine.desktop
 Type=Application
 Name=IRnow VisionEngine
 Comment=Inspection VisionEngine
-Exec="/home/jetson/Documents/deployment/autostart_app.sh"
+Exec=bash /home/jetson/Documents/deployment/autostart_app.sh
 Terminal=false
 X-GNOME-Autostart-enabled=true
 ```
